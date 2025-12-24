@@ -3,7 +3,7 @@ import { StoreContext } from "../../context/StoreContext";
 import { useNavigate } from "react-router-dom";
 
 function Cart() {
-  const { cartItems, food_list, removeFromCart,getTotalCartAmount,deliveryCharge} = useContext(StoreContext);
+  const { cartItems, food_list, removeFromCart,getTotalCartAmount,deliveryCharge,url} = useContext(StoreContext);
  const navigate=useNavigate()
   return (
     <div className="w-full min-h-screen bg-gradient-to-b from-orange-50 to-orange-100 py-12 px-4">
@@ -34,7 +34,7 @@ function Cart() {
               className="grid grid-cols-7 items-center bg-white rounded-lg shadow-md p-4 border border-orange-100 hover:shadow-lg transition"
             >
               <img
-                src={item.image}
+                src={url+"/images/"+item.image}
                 alt=""
                 className="w-16 h-16 rounded-lg border object-cover"
               />

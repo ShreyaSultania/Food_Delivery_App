@@ -8,24 +8,25 @@ import Order from './pages/Orders/Order'
 import { ToastContainer } from 'react-toastify';
 
 function App() {
-  const url="http://localhost:4000"
+  const url = "http://localhost:4000"
   return (
     <>
-     <ToastContainer></ToastContainer>
+      <ToastContainer></ToastContainer>
       <Navbar />
       <hr />
-<div className="flex">
-  <SideBar />
+      <div className="flex h-screen overflow-hidden">
+        <SideBar />
 
-  {/* CONTENT AREA */}
-  <div className="flex-1 p-6 bg-orange-50 min-h-screen">
-    <Routes>
-      <Route path="/add" element={<Add url={url}/>} />
-      <Route path="/list" element={<List url={url}/>} />
-      <Route path="/order" element={<Order url={url}/>} />
-    </Routes>
-  </div>
-</div>
+        {/* CONTENT AREA */}
+        <div className="flex-1 overflow-y-auto bg-orange-50">
+          <Routes>
+            <Route path="/" element={<Add url={url} />} />
+            <Route path="/add" element={<Add url={url} />} />
+            <Route path="/list" element={<List url={url} />} />
+            <Route path="/order" element={<Order url={url} />} />
+          </Routes>
+        </div>
+      </div>
 
     </>
   )
