@@ -6,7 +6,7 @@ import Add from './pages/Add/Add'
 import List from './pages/List/List'
 import Order from './pages/Orders/Order'
 import { ToastContainer } from 'react-toastify';
-
+// Admin panel setup
 function App() {
   const url = "http://localhost:4000"
   return (
