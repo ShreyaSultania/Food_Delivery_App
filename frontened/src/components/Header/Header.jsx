@@ -9,7 +9,7 @@ function Header() {
   };
 
   return (
-    <div className="flex justify-center mb-10 sm:mb-16 px-4">
+    <div className="flex justify-center mb-11 sm:mb-16 px-4">
       <div
         className="
           w-full sm:w-[90%] 
