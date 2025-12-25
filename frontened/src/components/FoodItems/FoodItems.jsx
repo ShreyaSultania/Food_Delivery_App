@@ -3,22 +3,18 @@ import { assets } from "../../assets/assets";
 import { StoreContext } from "../../context/StoreContext";
 
 function FoodItems({ id, name, price, description, image }) {
-  const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
+  const { cartItems, addToCart, removeFromCart, url } =
+    useContext(StoreContext);
+
+  // ✅ SAFE ACCESS (THIS FIXES THE CRASH)
+  const quantity = cartItems?.[id] || 0;
 
   return (
-    <div
-      className="
-        w-full bg-white rounded-xl 
-        border border-orange-100 
-        hover:border-orange-400 hover:shadow-md 
-        transition-all duration-300 
-        overflow-hidden
-      "
-    >
+    <div className="w-full bg-white rounded-xl border border-orange-100 hover:border-orange-400 hover:shadow-md transition-all duration-300 overflow-hidden">
       {/* Image */}
       <div className="w-full h-40 sm:h-44 md:h-48 bg-orange-50 overflow-hidden relative">
         <img
-          src={image}
+          src={url + "/images/" + image}
           alt={name}
           className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
         />
@@ -26,7 +22,6 @@ function FoodItems({ id, name, price, description, image }) {
 
       {/* Content */}
       <div className="p-3 sm:p-4">
-        {/* Name + Rating */}
         <div className="flex items-start justify-between mb-2">
           <p className="text-sm sm:text-base font-semibold text-gray-800 leading-tight">
             {name}
@@ -38,18 +33,16 @@ function FoodItems({ id, name, price, description, image }) {
           />
         </div>
 
-        {/* Description */}
         <p className="text-gray-500 text-xs sm:text-sm mb-3 line-clamp-2">
           {description}
         </p>
 
-        {/* Price + Add/Remove Buttons */}
         <div className="flex items-center justify-between">
           <p className="text-base sm:text-lg font-bold text-orange-600">
             ₹{price}
           </p>
 
-          {!cartItems[id] ? (
+          {quantity === 0 ? (
             <img
               onClick={() => addToCart(id)}
               src={assets.add_icon_white}
@@ -65,7 +58,7 @@ function FoodItems({ id, name, price, description, image }) {
                 className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer hover:scale-110 transition"
               />
               <p className="text-xs sm:text-sm font-semibold px-1 sm:px-2">
-                {cartItems[id]}
+                {quantity}
               </p>
               <img
                 onClick={() => addToCart(id)}

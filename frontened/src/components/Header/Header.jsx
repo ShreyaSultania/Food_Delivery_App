@@ -1,6 +1,13 @@
 import React from 'react'
 
 function Header() {
+  const scrollToMenu = () => {
+    const menuSection = document.getElementById('explore-menu');
+    if (menuSection) {
+      menuSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <div className="flex justify-center mb-10 sm:mb-16 px-4">
       <div
@@ -21,7 +28,7 @@ function Header() {
 
         {/* Content */}
         <div className="relative z-10 text-center px-4 sm:px-6 max-w-xl md:max-w-2xl">
-          
+
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4 leading-snug sm:leading-tight">
             Order your favourite food here
           </h2>
@@ -31,15 +38,18 @@ function Header() {
             with the finest ingredients and delivered hot & fresh to your doorstep.
           </p>
 
-          <button className="
-            px-6 sm:px-8 
-            py-2.5 sm:py-3 
-            bg-orange-500 text-white 
-            text-sm sm:text-lg 
-            font-semibold rounded-full shadow-md 
-            hover:bg-orange-600 hover:scale-105 
-            transition-all duration-300
-          ">
+          <button
+            onClick={scrollToMenu}
+            className="
+              px-6 sm:px-8 
+              py-2.5 sm:py-3 
+              bg-orange-500 text-white 
+              text-sm sm:text-lg 
+              font-semibold rounded-full shadow-md 
+              hover:bg-orange-600 hover:scale-105 
+              transition-all duration-300
+            "
+          >
             View Menu
           </button>
 

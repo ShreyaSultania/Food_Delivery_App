@@ -3,25 +3,35 @@ import cors from 'cors'
 import { connectDB } from './config/db.js';
 import foodRouter from './routes/foodRoutes.js'
 import userRouter from './routes/userRoutes.js';
-import 'dotenv/config' 
+import 'dotenv/config'
+import cartRouter from './routes/cartRoute.js';
+import orderRouter from './routes/orderRoutes.js';
 // app config
-const app=express();
-const PORT=4000;
+const app = express();
+const PORT = 4000;
 
 // middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors(
+    {
+        origin: "http://localhost:5173",
+        credentials: true
+    }
+));
 
 // db connection
 connectDB();
 
 // api endpoints
-app.use("/api/food",foodRouter);
-app.use("/images",express.static('uploads'))
-app.use("/api/user",userRouter)
-app.get("/",(req,res)=>{
+app.use("/api/food", foodRouter);
+app.use("/images", express.static('uploads'))
+app.use("/api/user", userRouter)
+app.use("/api/cart", cartRouter)
+app.use("/api/order", orderRouter);
+
+app.get("/", (req, res) => {
     res.send('API working')
 })
-app.listen(PORT,()=>{
+app.listen(PORT, () => {
     console.log("Server is working")
 })
