@@ -5,50 +5,50 @@ import axios from 'axios'
 import { toast } from 'react-toastify';
 // import { useEffect } from 'react';
 
-function Add({url}) {
-  
-    const [image,setImage]=useState(false);
-    const [data,setData]=useState({
-        name:"",
-        description:"",
-        price:"",
-        category:"Salad"
+function Add({ url }) {
 
-    })
-    const onChangeHandler=(e)=>{
-        const name=e.target.name;
-        const value=e.target.value;
-        setData(data=>({...data,[name]:value}))
-    }
-    // useEffect(()=>{
-    //     console.log(data)
-    // },[data]);
+  const [image, setImage] = useState(false);
+  const [data, setData] = useState({
+    name: "",
+    description: "",
+    price: "",
+    category: "Salad"
 
-    const onSubmitHandler=async(e)=>{
-        e.preventDefault();
-        console.log("form submitted");
-        const formData=new FormData();
-        formData.append("name",data.name);
-         formData.append("description",data.description);
-          formData.append("price",Number(data.price));
-            formData.append("category",data.category);
-             formData.append("image",image);
-             const response=await axios.post(`${url}/api/food/add`,formData);
-             if(response.data.success){
-              setData({
-              name:"",
-              description:"",
-              price:"",
-              category:"Salad"
-             }
-            )
-          setImage(false)
-          toast.success(response.data.message);
-        }
-             else{
-              toast.error(response.data.error);
-             }
+  })
+  const onChangeHandler = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setData(data => ({ ...data, [name]: value }))
+  }
+  // useEffect(()=>{
+  //     console.log(data)
+  // },[data]);
+
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    console.log("form submitted");
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("description", data.description);
+    formData.append("price", Number(data.price));
+    formData.append("category", data.category);
+    formData.append("image", image);
+    const response = await axios.post(`${url}/api/food/add`, formData);
+    if (response.data.success) {
+      setData({
+        name: "",
+        description: "",
+        price: "",
+        category: "Salad"
+      }
+      )
+      setImage(false)
+      toast.success(response.data.message);
     }
+    else {
+      toast.error(response.data.error);
+    }
+  }
   return (
 
     <div className="max-w-4xl bg-white p-6 rounded-xl shadow-md">
@@ -60,14 +60,14 @@ function Add({url}) {
           <p className="font-semibold text-gray-700 mb-2">Upload image</p>
           <label htmlFor="image" className="cursor-pointer">
             <img
-              src={image?URL.createObjectURL(image):assets.upload_area}
+              src={image ? URL.createObjectURL(image) : assets.upload_area}
               alt=""
               className="w-40 h-32 object-contain border-2 border-dashed border-orange-400 rounded-lg p-4 hover:bg-orange-50 transition"
             />
           </label>
-          <input type="file" id="image" name="image" hidden required onChange={(e)=>{
+          <input type="file" id="image" name="image" hidden required onChange={(e) => {
             setImage(e.target.files[0])
-          }}/>
+          }} />
         </div>
 
         {/* Product Name */}
@@ -96,7 +96,7 @@ function Add({url}) {
 
         {/* Category + Price */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
+
           <div>
             <p className="font-semibold text-gray-700 mb-2">Product category</p>
             <select onChange={onChangeHandler} value={data.category} name="category"
@@ -111,6 +111,7 @@ function Add({url}) {
               <option>Pure Veg</option>
               <option>Pasta</option>
               <option>Noodles</option>
+              <option>Others</option>
             </select>
           </div>
 
