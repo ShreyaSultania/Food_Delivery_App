@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 
-function List({url}) {
+function List({ url }) {
   const [list, setList] = useState([]);
   const fetchList = async () => {
     try {
@@ -11,19 +11,19 @@ function List({url}) {
       if (response.data.success) {
         setList(response.data.data);
       } else {
-        toast.error("Error fetching food list");
+        toast.error("Error fetched from food list");
       }
     } catch (err) {
       toast.error("Server error");
     }
   };
-  const removeFood=async(id)=>{
-    const response=await axios.post(`${url}/api/food/remove`,{id:id});
+  const removeFood = async (id) => {
+    const response = await axios.post(`${url}/api/food/remove`, { id: id });
     await fetchList();
-    if(response.data.success){
+    if (response.data.success) {
       toast.success(response.data.message);
     }
-    else{
+    else {
       toast.error("error")
     }
   }
@@ -83,8 +83,8 @@ function List({url}) {
             </p>
 
             {/* Action */}
-            <button onClick={()=>{
-             removeFood(item._id)
+            <button onClick={() => {
+              removeFood(item._id)
             }}
               className="mx-auto md:mx-0 bg-red-100 text-red-600 
                          px-4 py-1 rounded-full font-bold
