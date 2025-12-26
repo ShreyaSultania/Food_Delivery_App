@@ -1,6 +1,3 @@
-# Food Delivery App
-
-This project demonstrates MERN stack and GitHub workflow.
 # 🍅 Food Delivery App
 
 A full-stack **Food Delivery Web Application** built using the **MERN stack** that allows users to browse food items, place orders, and manage them efficiently.  
@@ -65,3 +62,47 @@ The conflict was resolved by manually editing the file, removing conflict marker
 ---
 
 ## 📂 Folder Structure (Simplified)
+Food_Delivery_App/
+│── frontend/
+│── backend/
+│── models/
+│── routes/
+│── controllers/
+│── README.md
+
+yaml
+Copy code
+
+---
+
+## 🧪 Challenges Faced
+- Handling merge conflicts in Git
+- Managing synchronization between local and remote repositories
+- Integrating frontend with backend APIs
+
+### Solutions
+- Used proper branching strategy
+- Resolved conflicts manually
+- Regularly synced using `git pull` and `git push`
+
+---
+
+## 📈 Learning Outcomes
+- Hands-on experience with MERN stack
+- Practical understanding of Git & GitHub
+- Learned merge conflict resolution
+- Improved full-stack development skills
+
+---
+
+## 🔮 Future Enhancements
+- Payment gateway integration
+- Real-time order tracking
+- Authentication & authorization
+- Deployment on cloud platform
+
+---
+
+## 👩‍💻 Author
+**Shreya Sultania**  
+GitHub: https://github.com/ShreyaSultania
