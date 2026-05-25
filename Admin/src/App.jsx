@@ -1,14 +1,15 @@
-import React from 'react'
-import Navbar from './components/Navbar'
-import SideBar from './components/SideBar'
-import { Routes, Route } from 'react-router-dom'
-import Add from './pages/Add/Add'
-import List from './pages/List/List'
-import Order from './pages/Orders/Order'
-import { ToastContainer } from 'react-toastify';
-// Admin panel setup
+import React from "react";
+import Navbar from "./components/Navbar";
+import SideBar from "./components/SideBar";
+import { Routes, Route } from "react-router-dom";
+import Add from "./pages/Add/Add";
+import List from "./pages/List/List";
+import Order from "./pages/Orders/Order";
+import { ToastContainer } from "react-toastify";
+
 function App() {
-  const url = "http://localhost:4000"
+  const url = import.meta.env.VITE_API_URL || "http://localhost:4000";
+
   return (
     <>
       <ToastContainer></ToastContainer>
@@ -17,7 +18,6 @@ function App() {
       <div className="flex h-screen overflow-hidden">
         <SideBar />
 
-        {/* CONTENT AREA */}
         <div className="flex-1 overflow-y-auto bg-orange-50">
           <Routes>
             <Route path="/" element={<Add url={url} />} />
@@ -27,9 +27,8 @@ function App() {
           </Routes>
         </div>
       </div>
-
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,0 +1,55 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: food-delivery-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    build:
+      context: ./backened
+      dockerfile: Dockerfile
+    container_name: food-delivery-backend
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    ports:
+      - "4000:4000"
+    environment:
+      PORT: 4000
+      MONGO_URI: mongodb://mongo:27017/food-delivery
+      CORS_ORIGINS: http://localhost:5173,http://localhost:5174
+    volumes:
+      - ./backened/uploads:/app/uploads
+
+  frontend:
+    build:
+      context: ./frontened
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: http://localhost:4000
+    container_name: food-delivery-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"
+
+  admin:
+    build:
+      context: ./Admin
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: http://localhost:4000
+    container_name: food-delivery-admin
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "5174:80"
+
+volumes:
+  mongo-data:
